@@ -6,9 +6,13 @@
       <div class="py-2">
         <Navbar 
         title="Products"
-        actionName="Add Product"
-        actionLink="/products/create"
+        :actionName=null
+        :actionLink=null
         />
+      </div>
+
+      <div class="py-12">
+        <ProductForm />
       </div>
     
     </div>
@@ -18,6 +22,7 @@
 
 import BreadCrumb from "@/components/dashbord/BreadCrumb.vue";
 import Navbar from "@/components/dashbord/Navbar.vue";
+import ProductForm from "@/components/products/ProductForm.vue";
 
 const breadcrumbItems = [
   {

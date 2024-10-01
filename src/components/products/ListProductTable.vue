@@ -7,14 +7,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-
-import { Product } from '@/types/global';
+} from "@/components/ui/table";
+import router from "@/router";
 
 const { products } = defineProps<{
   products: Product[];
 }>();
-
 </script>
 
 <template>
@@ -23,6 +21,7 @@ const { products } = defineProps<{
     <TableHeader>
       <TableRow>
         <TableHead class="w-[100px]">ID</TableHead>
+        <TableHead class="w-[100px]">Image</TableHead>
         <TableHead>Title</TableHead>
         <TableHead>Description</TableHead>
         <TableHead class="text-right">Price</TableHead>
@@ -30,13 +29,25 @@ const { products } = defineProps<{
     </TableHeader>
     <TableBody>
       <!-- Loop through products and render a TableRow for each -->
-      <TableRow v-for="product in products" :key="product.id">
+      <TableRow
+        @click="() => router.push(`/products/${product.id}/edit`)"
+        v-for="product in products"
+        :key="product.id"
+      >
         <TableCell class="font-medium">{{ product.id }}</TableCell>
-        <TableCell>{{ product.title }}</TableCell>
-        <TableCell>{{ product.description }}</TableCell>
-        <TableCell class="text-right">{{ product.price}}</TableCell>
+        <TableCell>
+          <img
+            class="w-12 h-12 object-cover rounded-lg"
+            :src="product.image"
+            alt="product image"
+          />
+        </TableCell>
+        <TableCell>{{ product.name_en }}</TableCell>
+        <TableCell>
+          <div class="line-clamp-3" v-html="product.description_en"></div>
+        </TableCell>
+        <TableCell class="text-right">{{ product.price }}</TableCell>
       </TableRow>
     </TableBody>
   </Table>
 </template>
-

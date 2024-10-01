@@ -1,9 +1,9 @@
 
-export interface Product {
-    id: number;
-    title: string;
-    description: string;
-    price: string | number;
-    image_url: string;
-    created_at: string;
-    }
+    interface Product {
+        id: number;
+        image: string;
+        name_en: string;
+        price : number;
+        description_en : string;
+      }
+      

@@ -1,3 +1,4 @@
+import UpdateProductForm from "@/components/products/UpdateProductForm.vue";
 import AboutPage from "@/pages/AboutPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import CreateProductPage from "@/pages/product/createProductPage.vue";
@@ -22,8 +23,13 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/products/create",
-    name: "ProductDetail",
+    name: "CreateProduct",
     component: CreateProductPage,
+  },
+  {
+    name: "EditProduct",
+    component: UpdateProductForm,
+    path: "/products/:id/edit",
   },
 ];
 

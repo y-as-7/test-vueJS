@@ -14,13 +14,5 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from 'vue-router';
-
-
-const pathname = useRoute().path;
-
-console.log(pathname);
-
-
 
 </script>

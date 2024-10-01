@@ -21,8 +21,10 @@
 <script lang="ts" setup>
 import BreadCrumb from "@/components/dashbord/BreadCrumb.vue";
 import Navbar from "@/components/dashbord/Navbar.vue";
-import ProductTable from "@/components/products/ProductTable.vue";
-import { Product } from "@/types/global";
+import ProductTable from "@/components/products/ListProductTable.vue";
+import axios from "@/api/axios";
+import { PRODUCT_ENDPOINTS } from "@/api/endpoints";
+import { ref, onMounted } from 'vue';
 
 const breadcrumbItems = [
   {
@@ -35,22 +37,25 @@ const breadcrumbItems = [
   },
 ];
 
-const products: Product[] = [
-  {
-    id: 1,
-    title: "Product Title",
-    description: "Product Description",
-    price: "10",
-    image_url: "https://example.com/image.jpg",
-    created_at: "2024-10-01T07:38:36.000Z",
-  },
-  {
-    id: 2,
-    title: "Product Title",
-    description: "Product Description",
-    price: "10",
-    image_url: "https://example.com/image.jpg",
-    created_at: "2024-10-01T07:38:43.000Z",
-  },
-];
+
+const products = ref<Product[]>([]);
+
+onMounted(async () => {
+  const response = async () => {
+  try {
+    const response = await axios.get(PRODUCT_ENDPOINTS.GET_PRODUCTS);
+    console.log(await response.data);
+    
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+  const data = await response();
+  products.value = data;
+});
+
+
+
+
 </script>
