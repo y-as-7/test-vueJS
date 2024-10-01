@@ -13,20 +13,12 @@
   </nav>
 </template>
 
-<script lang="ts">
-import { Icon, icons } from 'lucide-vue-next';
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-export default {
-  name: "pink-navbar",
-  data() {
-    return {
-      showMenu: false
-    }
-  },
-  methods: {
-    toggleNavbar: function(){
-      this.showMenu = !this.showMenu;
-    }
-  }
+const showMenu = ref(false);
+
+const toggleNavbar = () => {
+  showMenu.value = !showMenu.value;
 }
 </script>

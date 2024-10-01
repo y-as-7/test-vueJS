@@ -69,16 +69,7 @@
     </div>
   </template>
 
-<script>
-
-export default{
-  name: 'SidebarComponent',
-  data(){
-    return{
-      active: true
-    }
-  }
-
-}
-
+<script lang="ts" setup>
+import { ref } from 'vue';
+const active = ref(false);
 </script>
