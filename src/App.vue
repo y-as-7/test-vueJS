@@ -1,7 +1,13 @@
 <script setup lang="ts"></script>
 
+
 <template>
-  <div class="min-h-screen bg-black flex justify-center items-center">
-    <h1 class="text-green-400">hello from the front end</h1>
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
+
