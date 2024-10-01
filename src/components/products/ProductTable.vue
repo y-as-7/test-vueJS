@@ -1,0 +1,42 @@
+<script setup lang="ts">
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+
+import { Product } from '@/types/global';
+
+const { products } = defineProps<{
+  products: Product[];
+}>();
+
+</script>
+
+<template>
+  <Table class="w-full">
+    <TableCaption>A list of your recent products.</TableCaption>
+    <TableHeader>
+      <TableRow>
+        <TableHead class="w-[100px]">ID</TableHead>
+        <TableHead>Title</TableHead>
+        <TableHead>Description</TableHead>
+        <TableHead class="text-right">Price</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <!-- Loop through products and render a TableRow for each -->
+      <TableRow v-for="product in products" :key="product.id">
+        <TableCell class="font-medium">{{ product.id }}</TableCell>
+        <TableCell>{{ product.title }}</TableCell>
+        <TableCell>{{ product.description }}</TableCell>
+        <TableCell class="text-right">{{ product.price}}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</template>
+

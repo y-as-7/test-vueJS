@@ -1,7 +1,7 @@
 <template>
-  <nav class="fixed flex items-center justify-between px-8 py-4 bg-primary w-full text-white">
+  <nav class="fixed flex items-center justify-between px-8 py-4 bg-primary w-full text-white h-[64px] z-10">
     <router-link
-    class="text-2xl font-bold"
+    class="text-2xl font-bold cursor-pointer"
     to="/">Rizme</router-link>
 
     <div>
@@ -14,11 +14,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-const showMenu = ref(false);
 
-const toggleNavbar = () => {
-  showMenu.value = !showMenu.value;
-}
+const pathname = useRoute().path;
+
+console.log(pathname);
+
+
+
 </script>

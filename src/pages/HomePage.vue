@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen  flex justify-center items-center">
+    <div class="min-h-screen  flex justify-center items-center ">
       Home Page
     </div>
   </template>
