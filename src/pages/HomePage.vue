@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-screen bg-black flex justify-center items-center">
-      <h1 class="text-green-400 animate-spin ">hello from the front end</h1>
+    <div class="min-h-screen  flex justify-center items-center">
+      Home Page
     </div>
   </template>
 
