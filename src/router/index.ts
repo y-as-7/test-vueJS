@@ -1,8 +1,8 @@
-import UpdateProductForm from "@/components/products/UpdateProductForm.vue";
 import AboutPage from "@/pages/AboutPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import CreateProductPage from "@/pages/product/createProductPage.vue";
 import ListProductsPage from "@/pages/product/ListProductsPage.vue";
+import UpdateProductPage from "@/pages/product/UpdateProductPage.vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     name: "EditProduct",
-    component: UpdateProductForm,
+    component: UpdateProductPage,
     path: "/products/:id/edit",
   },
 ];

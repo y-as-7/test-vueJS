@@ -4,7 +4,7 @@ import { useRoute } from "vue-router";
 import { PRODUCT_ENDPOINTS } from "@/api/endpoints";
 import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
-import { toast } from "../ui/toast";
+import { toast } from "../../components/ui/toast";
 import { useForm } from "vee-validate";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,8 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Textarea from "../ui/textarea/Textarea.vue";
-import Card from "../ui/card/Card.vue";
+import Textarea from "@/components/ui/textarea/Textarea.vue";
+import Card from "@/components/ui/card/Card.vue";
 import axios from "@/api/axios";
 
 const route = useRoute();
