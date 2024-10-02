@@ -13,7 +13,7 @@ export const USER_ENDPOINTS = {
 
 export const PRODUCT_ENDPOINTS = {
   GET_PRODUCTS: `${BASE_URL}/products`,
-  CREATE_PRODUCT: `${BASE_URL}/product/add`,
+  CREATE_PRODUCT: `${BASE_URL}/products`,
   GET_PRODUCT: (id: string) => `${BASE_URL}/products/${id}`,
   UPDATE_PRODUCT: (id: string) => `${BASE_URL}/products/${id}`,
   DELETE_PRODUCT: `${BASE_URL}/product`,

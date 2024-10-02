@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import BreadCrumb from "@/components/dashbord/BreadCrumb.vue";
+import BreadCrumb from "@/components/BreadCrumb.vue";
 import Navbar from "@/components/dashbord/Navbar.vue";
 import ProductTable from "@/components/products/ListProductTable.vue";
 import axios from "@/api/axios";

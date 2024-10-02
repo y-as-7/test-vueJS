@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import Textarea from "@/components/ui/textarea/Textarea.vue";
 import Card from "@/components/ui/card/Card.vue";
 import axios from "@/api/axios";
+import { Product } from "@/types/global";
 
 const route = useRoute();
 const productId = route.params.id;

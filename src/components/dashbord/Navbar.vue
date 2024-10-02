@@ -6,24 +6,21 @@
       </span>
     </h1>
 
-    <a
-      v-if="actionName && actionLink"
-      :href="actionLink || '#'"
-      class="bg-primary text-white font-bold py-2 px-4 rounded"
-    >
-      {{ actionName ??  'Action' }}
-    </a>
+    <div class="flex items-center gap-x-2">
+      <button
+        v-for="action in headerActions"
+        @click="action.apply"
+        class="bg-primary text-white font-bold py-2 px-4 rounded"
+      >
+        {{ action.label }}
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const {
-  title,
-  actionName = null,
-  actionLink = null,
-} = defineProps<{
+const { title, headerActions = [] } = defineProps<{
   title: string;
-  actionName: null | string;
-  actionLink: null | string;
+  headerActions: { label: string; apply: () => void }[];
 }>();
 </script>

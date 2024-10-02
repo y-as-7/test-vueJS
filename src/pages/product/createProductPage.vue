@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 
-import BreadCrumb from "@/components/dashbord/BreadCrumb.vue";
+import BreadCrumb from "@/components/BreadCrumb.vue";
 import Navbar from "@/components/dashbord/Navbar.vue";
 import ProductForm from "@/components/products/ProductForm.vue";
 
