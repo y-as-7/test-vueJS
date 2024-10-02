@@ -1,7 +1,5 @@
 import AboutPage from "@/pages/AboutPage.vue";
 import HomePage from "@/pages/HomePage.vue";
-import CreateProductPage from "@/pages/product/createProductPage.vue";
-import UpdateProductPage from "@/pages/product/UpdateProductPage.vue";
 import CreateProduct from "@/resources/products/CreateProduct.vue";
 import ListProduct from "@/resources/products/ListProduct.vue";
 import UpdateProduct from "@/resources/products/UpdateProduct.vue";
@@ -36,8 +34,13 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(
+  ),
   routes,
+  linkActiveClass: "active",
+  linkExactActiveClass: "exact-active",
+  strict: false,
+  sensitive: false,
 });
 
 export default router;

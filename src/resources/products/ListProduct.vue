@@ -2,20 +2,24 @@
 import { Product } from "@/types/global";
 import { onMounted, ref } from "vue";
 import List from "../base/list.vue";
-import router from "@/router";
 import { TableCell, TableHead } from "@/components/ui/table";
 import axios from "axios";
 import { PRODUCT_ENDPOINTS } from "@/api/endpoints";
 import ProductWidget from "./Widgets/ProductWidget.vue";
 import ProductDountChart from "./Widgets/ProductDountChart.vue";
+import router from "@/router";
 
 const products = ref<Product[]>([]);
 
 onMounted(async () => {
   try {
     loading.value = true;
-    const response = await axios.get(PRODUCT_ENDPOINTS.GET_PRODUCTS);
+    const response = await axios.get(
+      `${PRODUCT_ENDPOINTS.GET_PRODUCTS}?offset=10&limit=10`
+    );
     products.value = response.data;
+
+    router.go(1);
   } catch (error: any) {
     console.error(error);
   } finally {
@@ -24,6 +28,24 @@ onMounted(async () => {
 });
 
 const loading = ref<boolean>(false);
+
+const tableAction = [
+  {
+    label: "Edit",
+    apply: (item: Product) => {
+      if (item.id) {
+        router.push(`/products/${item.id}/edit`);
+      }
+    },
+  },
+  {
+    label: "Delete",
+    apply: (item: Product) => {
+      console.log("Delete", item);
+    },
+  },
+];
+
 const headerActions = [
   {
     label: "Add Product",
@@ -43,6 +65,7 @@ const headerActions = [
     ]"
     :items="products"
     :headerActions="headerActions"
+    :tableAction="tableAction"
     :loading="loading"
   >
     <template #widget>

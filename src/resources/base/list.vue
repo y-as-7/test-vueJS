@@ -18,6 +18,7 @@ const props = defineProps<{
   title: string;
   breadcrumbItems: IBreadCrumb[];
   headerActions: { label: string; apply: () => void }[];
+  tableAction: { label: string; apply: (item: any) => void }[];
   loading: boolean;
 }>();
 </script>
@@ -40,7 +41,7 @@ const props = defineProps<{
 
     <div class="py-12">
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>A list of your recent products.</TableCaption>
         <TableHeader>
           <TableRow>
            <slot name="header" />
@@ -54,6 +55,14 @@ const props = defineProps<{
           @click="() => router.push(`/${title.toLocaleLowerCase()}/${item.id}/edit`)"
           v-else v-for="item in props.items" :key="item.id">
             <slot name="row" :item="item" />
+
+            <TableCell
+            v-for="action in props.tableAction"
+            >
+              <button @click="() => action.apply(item.id)" class="text-blue-500">
+                {{ action.label }}
+              </button>
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

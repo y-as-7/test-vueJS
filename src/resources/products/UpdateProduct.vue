@@ -16,22 +16,27 @@ import { PRODUCT_ENDPOINTS } from "@/api/endpoints";
 import axios from "axios";
 import { onMounted, ref, watch } from "vue";
 import { Product } from "@/types/global";
-import { useRoute } from "vue-router";
+import router from "@/router";
 
-
-const route = useRoute();
-const productId = route.params.id;
-
-const loading = ref(false);
-
+// Reactive references
+const productId = ref(router.currentRoute.value.params.id);
+const loadingProduct = ref(false);
 const product = ref<Product | null>(null);
 
-async function fetchProduct() {
+// Fetch the product data when the component is mounted
+onMounted(async () => {
   try {
-    loading.value = true;
-    const response = await axios.get(
-      PRODUCT_ENDPOINTS.GET_PRODUCT(String(productId))
-    );
+    // refresh the page
+    loadingProduct.value = true;
+    const response = productId.value
+      ? await axios.get(PRODUCT_ENDPOINTS.GET_PRODUCT(String(productId.value)))
+      : {
+          data: {
+            title: "",
+            description: "",
+            price: 0,
+          },
+        };
     product.value = response.data;
   } catch (error: any) {
     console.error("Error fetching product:", error); // Log the error
@@ -42,12 +47,8 @@ async function fetchProduct() {
       duration: 5000,
     });
   } finally {
-    loading.value = false;
+    loadingProduct.value = false;
   }
-}
-
-onMounted(async () => {
-  await fetchProduct();
 });
 
 // Define the validation schema
@@ -59,7 +60,7 @@ const formSchema = toTypedSchema(
   })
 );
 
-// Initialize the form with empty initial values
+// Initialize the form with vee-validate
 const { handleSubmit, setValues } = useForm({
   validationSchema: formSchema,
   initialValues: {
@@ -69,7 +70,7 @@ const { handleSubmit, setValues } = useForm({
   },
 });
 
-// Watch for changes in the product and update the form values
+// Watch the product ref and update form values when the product is fetched
 watch(product, (newProduct) => {
   if (newProduct) {
     setValues({
@@ -80,20 +81,16 @@ watch(product, (newProduct) => {
   }
 });
 
-// Define the submit action
-const onSubmit = handleSubmit((values) => {
+// Define the submit action for the form
+const onSubmit = handleSubmit(async (values) => {
   try {
-
-    // Send the form data to the server
-    axios.put(
-      PRODUCT_ENDPOINTS.UPDATE_PRODUCT(String(productId)),
-
+    await axios.put(
+      PRODUCT_ENDPOINTS.UPDATE_PRODUCT(String(productId.value)),
       {
         title: values.title,
         description: values.description,
         price: values.price,
       },
-
       {
         headers: {
           "Content-Type": "application/json",
@@ -102,8 +99,8 @@ const onSubmit = handleSubmit((values) => {
     );
 
     toast({
-      title: "You submitted the following values:",
-      description: "your product has been created",
+      title: "Success",
+      description: "Your product has been updated.",
       duration: 5000,
     });
   } catch (error: any) {
@@ -116,6 +113,7 @@ const onSubmit = handleSubmit((values) => {
   }
 });
 
+// Props passed from parent component
 const props = defineProps<{
   submitAction: () => void;
   loading: boolean;
@@ -133,7 +131,7 @@ const props = defineProps<{
     :submitAction="onSubmit"
     :loading="props.loading"
   >
-    <template v-slot:form>
+    <template v-if="!loadingProduct" v-slot:form>
       <!-- Title field -->
       <FormField v-slot="{ componentField }" name="title">
         <FormItem v-auto-animate>
@@ -157,7 +155,7 @@ const props = defineProps<{
         </FormItem>
       </FormField>
 
-      <!-- price field -->
+      <!-- Price field -->
       <FormField v-slot="{ componentField }" name="price">
         <FormItem v-auto-animate>
           <FormLabel>Price</FormLabel>
