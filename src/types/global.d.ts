@@ -2,8 +2,9 @@
     interface Product {
         id: number;
         image: string;
-        name_en: string;
+        title: string;
+        images : string[];
         price : number;
-        description_en : string;
+        description : string;
       }
       

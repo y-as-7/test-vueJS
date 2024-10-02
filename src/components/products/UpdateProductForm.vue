@@ -50,7 +50,7 @@ onMounted(async () => {
 const formSchema = toTypedSchema(
   z.object({
     title: z.string().min(2).max(50),
-    description: z.string().min(2).max(225),
+    description: z.string().min(2).max(500),
     price: z.number().min(0.01).max(9999.99),
   })
 );
@@ -69,8 +69,8 @@ const { handleSubmit, setValues } = useForm({
 watch(product, (newProduct) => {
   if (newProduct) {
     setValues({
-      title: newProduct.name_en,
-      description: newProduct.description_en,
+      title: newProduct.title,
+      description: newProduct.description,
       price: Number(newProduct.price),
     });
   }

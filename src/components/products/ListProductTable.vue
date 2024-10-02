@@ -38,13 +38,13 @@ const { products } = defineProps<{
         <TableCell>
           <img
             class="w-12 h-12 object-cover rounded-lg"
-            :src="product.image"
+            :src="product.images[0]"
             alt="product image"
           />
         </TableCell>
-        <TableCell>{{ product.name_en }}</TableCell>
+        <TableCell>{{ product.title }}</TableCell>
         <TableCell>
-          <div class="line-clamp-3" v-html="product.description_en"></div>
+          <div class="line-clamp-3" v-html="product.description"></div>
         </TableCell>
         <TableCell class="text-right">{{ product.price }}</TableCell>
       </TableRow>

@@ -44,15 +44,16 @@ onMounted(async () => {
   const response = async () => {
   try {
     const response = await axios.get(PRODUCT_ENDPOINTS.GET_PRODUCTS);
-    console.log(await response.data);
     
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
 };
   const data = await response();
   products.value = data;
+  console.log(await response());
+  
 });
 
 
