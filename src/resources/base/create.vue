@@ -21,7 +21,7 @@ const props = defineProps<{
     </div>
 
     <div class="py-2">
-      <Navbar :title="title" :actions="[]" />
+      <Navbar :title="title" :headerActions="[]" />
     </div>
 
     <div class="py-12">

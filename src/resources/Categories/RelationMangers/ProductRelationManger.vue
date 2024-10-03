@@ -2,7 +2,7 @@
 import { TableCell, TableRow } from "@/components/ui/table";
 import RelationManger from "@/resources/base/components/RelationManger.vue";
 
-import { defineProps, toRaw } from "vue";
+import { defineProps } from "vue";
 
 const props = defineProps<{
   items: any[];
@@ -21,7 +21,7 @@ const props = defineProps<{
     </template>
 
     <template v-slot:body>
-      <TableRow v-for="item in items" :key="item.id">
+      <TableRow v-for="item in props.items" :key="item.id">
         <TableCell>{{ item.id }}</TableCell>
         <TableCell>{{ item.title }}</TableCell>
         <TableCell>{{ item.price }}</TableCell>

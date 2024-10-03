@@ -152,7 +152,7 @@ const onSubmit = handleSubmit(async (values) => {
 });
 
 // Props passed from parent component
-const props = defineProps<{
+defineProps<{
   submitAction: () => void;
   loading: boolean;
 }>();
