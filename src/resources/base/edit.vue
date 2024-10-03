@@ -8,9 +8,12 @@ import { defineProps } from "vue";
 
 const props = defineProps<{
   submitAction: () => void;
-  loading: boolean;
   title: string;
   BreadCrumb: IBreadCrumb[];
+  relationMagers: any;
+  relationMangerLoading: boolean;
+  submitLoading: boolean;
+  fromLoading: boolean;
 }>();
 </script>
 
@@ -27,18 +30,26 @@ const props = defineProps<{
     <div class="py-12">
       <Card class="p-8">
         <CardContent class="">
-          <form class="flex flex-col gap-y-8 md:w-2/3 w-full" @submit.prevent="submitAction">
+          <form
+            class="flex flex-col gap-y-8 md:w-2/3 w-full"
+            @submit.prevent="submitAction"
+          >
             <slot name="form" />
             <!-- Submit button -->
             <Button
-            disabled="props.loading"
-            :text="props.loading ? 'Loading...' : 'Update'"
-            type="submit"> Update </Button>
+              :text="props.submitLoading ? 'Loading...' : 'Update'"
+              type="submit"
+            >
+              Update
+            </Button>
           </form>
         </CardContent>
       </Card>
 
-      <div v-if="props.loading">Loading...</div>
+      <!-- relation manger if existed  -->
+      <div class="py-12">
+        <slot name="relationMangers" />
+      </div>
     </div>
   </div>
 </template>

@@ -1,5 +1,7 @@
 import AboutPage from "@/pages/AboutPage.vue";
 import HomePage from "@/pages/HomePage.vue";
+import ListCategory from "@/resources/Categories/ListCategory.vue";
+import UpdateCategory from "@/resources/Categories/UpdateCategory.vue";
 import CreateProduct from "@/resources/products/CreateProduct.vue";
 import ListProduct from "@/resources/products/ListProduct.vue";
 import UpdateProduct from "@/resources/products/UpdateProduct.vue";
@@ -15,6 +17,21 @@ const routes: Array<RouteRecordRaw> = [
     path: "/about",
     name: "About",
     component: AboutPage,
+  },
+  {
+    path: "/categories",
+    name: "Categories",
+    component: ListCategory,
+  },
+  {
+    path: "/categories/create",
+    name: "CreateCategory",
+    component: ListCategory,
+  },
+  {
+    path: "/categories/:id/edit",
+    name: "EditCategory",
+    component: UpdateCategory,
   },
   {
     path: "/products",
@@ -34,8 +51,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(
-  ),
+  history: createWebHistory(),
   routes,
   linkActiveClass: "active",
   linkExactActiveClass: "exact-active",

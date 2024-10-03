@@ -11,3 +11,9 @@ export interface IBreadCrumb {
   text: string;
   href: string;
 }
+
+export interface ICategory {
+  id: number;
+  name: string;
+  image: string;
+}
