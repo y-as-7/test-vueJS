@@ -21,7 +21,7 @@ const props = defineProps<{
     </div>
 
     <div class="py-2">
-      <Navbar :title="title" :actions="[]" />
+      <Navbar :title="title" :headerActions="[]" />
     </div>
 
     <div class="py-12">
@@ -32,8 +32,8 @@ const props = defineProps<{
             <!-- Submit button -->
             <Button
             disabled="props.loading"
-            :text="props.loading ? 'Loading...' : 'Create'"
-            type="submit"> Create </Button>
+            :text="props.loading ? 'Loading...' : 'Update'"
+            type="submit"> Update </Button>
           </form>
         </CardContent>
       </Card>

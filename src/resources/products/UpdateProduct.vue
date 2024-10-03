@@ -23,6 +23,8 @@ const productId = ref(router.currentRoute.value.params.id);
 const loadingProduct = ref(false);
 const product = ref<Product | null>(null);
 
+
+
 // Fetch the product data when the component is mounted
 onMounted(async () => {
   try {

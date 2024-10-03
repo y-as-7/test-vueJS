@@ -14,6 +14,7 @@ import { toast } from "@/components/ui/toast";
 import { useForm } from "vee-validate";
 import { PRODUCT_ENDPOINTS } from "@/api/endpoints";
 import axios from "axios";
+import router from "@/router";
 
 const formSchema = toTypedSchema(
   z.object({
@@ -29,7 +30,7 @@ const { handleSubmit } = useForm({
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    await axios.post(PRODUCT_ENDPOINTS.CREATE_PRODUCT, {
+    const newProduct = await axios.post(PRODUCT_ENDPOINTS.CREATE_PRODUCT, {
       title: values.title,
       description: values.description,
       categoryId: 1,
@@ -42,6 +43,8 @@ const onSubmit = handleSubmit(async (values) => {
       description: "your product has been created",
       duration: 5000,
     });
+
+    router.push(`/products/${newProduct.data.id}/edit`);
   } catch (error: any) {
     toast({
       title: "An error occurred",

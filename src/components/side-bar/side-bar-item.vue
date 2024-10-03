@@ -16,8 +16,8 @@
  </template>
  
  <script setup lang="ts">
- import { useRoute } from 'vue-router';
- import { computed } from 'vue';
+ import router from '@/router';
+import { computed } from 'vue';
  
  interface SideBarItemProps {
    title: string;
@@ -27,8 +27,6 @@
  
  const { title, link, icon } = defineProps<SideBarItemProps>();
  
- const route = useRoute();
- 
- const isActive = computed(() => route.fullPath === link);
+ const isActive = computed(() => router.currentRoute.value.path.startsWith(link) && (link !== '/' || router.currentRoute.value.path === '/'));
  </script>
  
